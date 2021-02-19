@@ -64,12 +64,12 @@ Foram implementados temas light e dark que se alternam de acordo com a preferên
 
 Desenvolvido sob um design responsivo para melhor se adequar a diferentes telas.
 <div style='display:flex; flex-direction: row'>
-<figure width='50%'>
+<figure>
 <img src='./images/Jogo-da-Velha-mobile.png' alt='Interface Light em telas menores'></img>
 <figurecaption>Interface Light em telas menores</figurecaption>
 </figure>
 
-<figure width='50%'>
+<figure>
 <img src='./images/Jogo-da-Velha-dark-mode-mobile.png' alt='Interface Dark em telas menores'></img>
 <figurecaption>Interface Dark em telas menores</figurecaption>
 </figure>
