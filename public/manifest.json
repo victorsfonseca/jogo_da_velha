@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Jogo da Velha",
+  "name": "Jogo da Velha - por Victor Fonseca",
   "icons": [
     {
       "src": "favicon.ico",

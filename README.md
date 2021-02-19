@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# Jogo da Velha
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Projeto para aprender e colocar em prática conhecimentos de JavaScript, reactJS e nodeJS.
+Desenvolvimento de um jogo da velha (tic-tac-toe).
 
-## Available Scripts
+![](./images/Jogo-da-Velha.png)
+*Interface Light*
 
-In the project directory, you can run:
+## Estrutura do Projeto
 
-### `npm start`
+O projeto é separado em backend e frontend, mas nesta versão preliminar são integradas. Com a aplicação rodando toda no lado do cliente, o componente react instancia um objeto contendo as regras de negócio do jogo.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A comunicação entre back e frontend é estabelecida através da emissão de eventos em um formato implementado da seguinte forma:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+````
+on(event, callback){
 
-### `npm test`
+    this._listenners.push({
+        event: event,
+        callback: callback
+    })
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+}
 
-### `npm run build`
+emit(event, params){
+    
+    this._listenners.forEach(listenner => {
+        
+        if(listenner.event == event){
+            listenner.callback(params)
+        }
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    });
+}
+````
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Quem quer que se interesse, se cadastra no evento pela função on, passando como parâmetros em qual evento quer se inscrever e qual a função deve ser chamada quando o evento for disparado.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Backend
 
-### `npm run eject`
+Apenas uma classe (JogoDaVelha) é responsável pelas regras de negócio do jogo.
+3 funções devem ser chamadas para comandar o jogo.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- play. Recebe como parâmetros linha e coluna ao qual será marcado a escolha de jogada do jogador corrente. Os jogadores são alternados automaticamente.
+- undoPlay. retorna uma jogada.
+- restart. reinicia o jogo alternando o jogador que deve iniciar a partida 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5 eventos são disparados:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- boardChanged. Quando o tabuleiro é modificado por uma jogada ou reinicialização do jogo. É passado informações do tabuleiro como parametro.
+- historyChanged. Quando o histórico de jogadas é modificado por uma jogada ou reinicialização do jogo. Recebe como parâmetro o histórico de jogadas.
+- playerChanged. Quando o jogador corrente, próximo a jogar, é modificado. Recebe como parâmetro o novo jogador corrente.
+- finished. Quando o termina com vitória ou empate. Recebe como parâmetro o status: 'vitória', 'empate', quem venceu, e qual coluna, linha ou diagoanal resultou na vitória.
+- scoreChanged. quando termina um jogo e o placar é modificado. Recebe como parâmetro o placar do jogo.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Frontend
 
-## Learn More
+Composto por um único componente react que mostra ao usuário os comandos básicos do jogo.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Foram implementados temas light e dark que se alternam de acordo com a preferência do sistema.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![](./images/Jogo-da-Velha-dark-mode.png)
+*Interface Dark*
 
-### Code Splitting
+Desenvolvido sob um design responsivo para melhor se adequar a diferentes telas.
+<div style='display:flex; flex-direction: row'>
+<figure>
+<img src='./images/Jogo-da-Velha-mobile.png' alt='Interface Light em telas menores'></img>
+<figurecaption>Interface Light em telas menores</figurecaption>
+</figure>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<figure>
+<img src='./images/Jogo-da-Velha-dark-mode-mobile.png' alt='Interface Dark em telas menores'></img>
+<figurecaption>Interface Dark em telas menores</figurecaption>
+</figure>
+</div>
 
-### Analyzing the Bundle Size
+## Histórico
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 0.0.1 
+    - Versão preliminar do jogo rodando inteiramente no lado do cliente.
 
-### Making a Progressive Web App
+## Autor
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Victor Fonseca
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="left">
+<a href="mailto:victor.sf@live.com" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/gmail.svg" alt="victorsfonseca" height="30" width="40" /></a>
+<a href="https://linkedin.com/in/victorsfonseca" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="victorsfonseca" height="30" width="40" /></a>
+<a href="https://fb.com/victorsfonseca" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/facebook.svg" alt="victorsfonseca" height="30" width="40" /></a>
+<a href="https://instagram.com/victorsfonseca" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg" alt="victorsfonseca" height="30" width="40" /></a>
+</p>

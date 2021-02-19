@@ -1,0 +1,320 @@
+@font-face{
+    font-family: BungeeShade;
+    src: url(../Assets/Fonts/BungeeShade-Regular.ttf);
+}
+
+@keyframes heigthGrow{
+    
+    from {
+        height: 0%;
+    }
+
+    to {
+        height: 90%;
+    }
+}
+
+@keyframes widthGrow{
+    
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 90%;
+    }
+}
+
+@keyframes diagonalGrow{
+    
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 90%;
+    }
+}
+
+.wonLine{
+    display: none;
+    position: absolute;
+    border-top: 2px solid var(--primary-color);
+    border-left: 2px solid var(--primary-color);
+    top: 5%;
+    left: 5%;
+    height: 0%;
+    width: 0%;
+    
+}
+
+.wonLine.activateDiagonal{
+    display: block;
+    transform-origin: top left;
+    transform: skewy(45deg);
+    animation-name: diagonalGrow;
+    animation-duration: 1s;
+    width: 90%;
+}
+
+.wonLine.activateRow{
+    display: block;
+    animation-name: widthGrow;
+    animation-duration: 1s;
+    width: 90%;
+}
+
+.wonLine.activateColumn{
+    display: block;
+    animation-name: heigthGrow;
+    animation-duration: 1s;
+    height: 90%;
+}
+
+.firstPlayer{
+    color: var(--blue-color);
+    font-weight: bold;
+}
+
+.secondPlayer{
+    color: var(--red-color);
+    font-weight: bold;
+}
+
+.Game-view{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.View-topbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: "BungeeShade";
+    margin-bottom: 20px;
+}
+
+.View-content{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 20px;
+    max-width: 1000px;
+}
+
+.Game-content{
+    width: 60%;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.GameContent-topbar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+}
+
+.ReturnGame-icon{
+    position: absolute;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.GameContent-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.Game{
+    margin: 30px 0 30px 0;
+    border-radius: 20px;
+    box-shadow: var(--neomorphism-shadows);
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+}
+
+.gameRows{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.gameFinished{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    font-size: x-large;
+    
+}
+
+.gameFinished.hide{
+    display: none;
+    
+}
+
+.gameFinished.firstPlayerWin{
+    background-color: var(--blue-color);
+    color: var(--light-color);
+    opacity: .9;
+}
+
+.gameFinished.secondPlayerWin{
+    background-color: var(--red-color);
+    color: var(--light-color);
+    opacity: .9;
+}
+
+.tied{
+    background-color: var(--yellow-color);
+    color: var(--dark-color);
+    opacity: .9;
+}
+
+.gameRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 33.333%;
+  }
+
+.columnDivision{
+    position: absolute;
+    border-left: 2px solid var(--primary-color);
+    top: 5%;
+    height: 90%;
+}
+
+.rowDivision{
+    position: absolute;
+    border-top: 2px solid var(--primary-color);
+    left: 5%;
+    width: 90%;
+}
+  
+.boardItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    flex-basis: 0;
+    height: auto;
+}
+
+.GameContent-bottombar{
+    display: flex;
+    justify-content: center;
+}
+
+.Restart-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: var(--neomorphism-button-shadows);
+    cursor: pointer;
+    
+}
+
+.button-pressed{
+    box-shadow: var(--neomorphism-button-pressed-shadows);
+}
+
+.Information-content{
+    width: 40%;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.Information-content p{
+    font-size: small;
+}
+
+.placarTitle{
+    text-align: center;
+}
+
+.placarItens{
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.placarItem{
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: var(--neomorphism-button-shadows);
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+}
+
+.historyTitle{
+    margin-top: 30px;
+}
+
+.historyItem{
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: var(--neomorphism-button-shadows);
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.historyItem p{
+    font-size: medium;
+}
+
+@media screen and (max-width: 770px) {
+    .View-content{
+        flex-direction: column;
+        align-items: center;
+        /* justify-content: center; */
+    }
+
+    .Game-content{
+        width: 80%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .Information-content{
+        width: 80%;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-top: 10px;
+    } 
+  }
