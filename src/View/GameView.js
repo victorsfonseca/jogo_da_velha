@@ -318,6 +318,10 @@ class GameView extends React.Component{
                         })}
                     </div>
                 </div>
+            
+                <div className='View-footer'>
+                    <p>Designed and developed by Victor Fonseca. <a href='https://github.com/victorsfonseca/jogo_da_velha'>Clique aqui</a> e saiba mais.</p>
+                </div>
             </div>
         )
     }
